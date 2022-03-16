@@ -1,0 +1,5 @@
+.fb:hover,.twitter:hover,.insta:hover,.reddit:hover,.git:hover{
+    color: cyan !important;
+    transform: translateY(-5px);
+    transition: all 350ms ease-in-out;
+}
