@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 // import styles from '../Styles/CoinHome.css'
 import styled from 'styled-components'
 import Navbar from '../Components/Navbar'
 import Footer from './Footer'
 
 function Coins() {
-  // const navigate=useNavigate()
+  const navigate=useNavigate()
     useEffect(()=>{
         getCoins()
     },[])
+    const [page,setPage]=useState(1)
     const [coins,setCoins]=useState([])
     const baseUrl="https://api.coingecko.com/api/v3/coins/"    
     const getCoins=async ()=>{
@@ -31,7 +32,7 @@ function Coins() {
         .catch((error)=>{
             console.log("Error : "+error);
         })        
-    } 
+    }         
   return (
       <>
     {/* <div>Coins</div> */}
@@ -55,10 +56,11 @@ function Coins() {
                 </tr>
             </thead>
             <tbody id="data" className='bg-transparent'>                      
-            {coins.map((coin,index)=>(                                                                       
+            {coins.slice((page-1)*10,(page-1)*10+15).map((coin,index)=>(                                                                       
                     <Row key={coin.id}>
+                      {/* {console.log(coin)} */}
                         <td style={tD}>{coin.market_data.market_cap_rank}</td>
-                        <td style={tD} className='d-flex flex-row'><img className='mx-md-3' src={coin.image.small} alt="" /><div className='d-flex flex-column'>{coin.name}<span>{coin.symbol}</span></div></td>
+                        <td style={tD} className='d-flex flex-row cursor-pointer' onClick={()=>navigate(`/Coins/${coin.name}`)}><img className='mx-md-3' src={coin.image.small} alt="" /><div className='d-flex flex-column hover:underline'>{coin.name}<span>{coin.symbol}</span></div></td>
                         <td style={tD}>{coin.market_data.current_price.inr}</td>
                         <td style={tD}>{coin.market_data.market_cap.inr}</td>  
                         <td style={tD}>{coin.market_data.price_change_24h}</td>                      
@@ -73,7 +75,7 @@ function Coins() {
   <ul className="pagination">
     <li className="page-item"><Link to="/news/prev" class="page-link">Previous</Link></li>
     <li className="page-item active"><Link to="/news/1" class="page-link">1</Link></li>
-    <li className="page-item"><Link to="/news/2" class="page-link">2</Link></li>
+    <li className="page-item"><Link to="/news/2" class="page-link" onClick={()=>setPage(2)}>2</Link></li>
     <li className="page-item"><Link to="/news/3" class="page-link">3</Link></li>
     <li className="page-item"><Link to="/news/next" class="page-link">Next</Link></li>
   </ul>

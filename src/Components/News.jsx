@@ -32,26 +32,26 @@ function News() {
             setAllnews(news_data)
     }
   return (<>
-    <NewsPage className='p-md-5'>News
-    <h1 className='fs-2'>News</h1>
-    <NewsHead className='d-flex justify-center gap-x-5 pt-md-5'>
+    <NewsPage className='p-md-5'>
+    <h1 className='fs-2 font-montserrat tracking-wider'>News and Events</h1>
+    <NewsHead className='d-flex justify-center gap-x-10 pt-md-5'>
     {allnews.slice(0,3).map((news)=>(        
-        <>            
-            <div className='card cursor-pointer' style={{width:"18rem"}} onClick={()=>{window.open(`http://${news.domain}/${news.slug}`)}}>
+        <>              
+            <div className='card cursor-pointer rounded-md overflow-hidden hover:-translate-y-5 transition-all' style={{width:"18rem"}} onClick={()=>{window.open(`http://${news.domain}/${news.slug}`)}}>
                 <img src={image} alt="" />
                 <div className='card-body'>
                     <h5 className='card-title'>{news.title}</h5>
                     <p className='card-text text-sm text-slate-500'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum, aperiam!</p>
-                    <Button className='d-flex justify-start align-items-center pt-md-3'><button className='btn btn-primary px-md-4'>Read more</button></Button>
+                    {/* <Button className='d-flex justify-start align-items-center pt-md-3'><button className='btn btn-primary px-md-4'>Read more</button></Button> */}
                     <div className='d-flex justify-between pt-md-3'><span className='text-xs text-muted'>({news.created_at})</span><span className='text-xs text-muted'>{news.domain}</span></div>
                 </div>
-            </div> 
+            </div>                      
         </>            
     ))}
     </NewsHead>
     <NewsStack className='d-flex justify-center pt-md-5'>
         <div>
-    {allnews.slice(3,13).map((news,index)=>(
+    {allnews.slice(3,13).map((news,index)=>(        
         <div className='d-flex gap-x-5 my-md-3 bg-slate-100 p-2 py-3 rounded-md cursor-pointer' onClick={()=>{window.open(`http://${news.domain}/${news.slug}`)}}>
             <Image src={image} alt="" />
             <div>
@@ -59,7 +59,7 @@ function News() {
                 <p className='text-sm'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut porro totam rerum nulla autem illum.</p>
                 <div className='d-flex items-center'><span className='text-xs text-muted'>(3 minutes ago)</span><span className='d-flex items-center text-xs text-blue-400 md:pl-5'><BsLink45Deg/>{news.domain}</span></div>
             </div>                                        
-        </div>
+        </div>        
     ))}
     </div>    
     </NewsStack>
@@ -82,10 +82,10 @@ const NewsStack=styled.div`
     // color:red;
     // gap:5rem;
 `
-const Button=styled.div`
-    // color:red;
-    // gap:5rem;
-`
+// const Button=styled.div`
+//     // color:red;
+//     // gap:5rem;
+// `
 const Image=styled.img`
     max-height:100px;
     max-width:100px;

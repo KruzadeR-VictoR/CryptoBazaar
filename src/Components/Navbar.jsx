@@ -1,9 +1,11 @@
 import React from 'react'
 import logo from '../images/logo.png'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import {FaUserAlt} from 'react-icons/fa'
 
 function Navbar({title}) {
+  const navigate=useNavigate()
   return (<>
     {/* <div classNameName='bg-red-700 container m-auto flex justify-center md:p-5'>
     <ul classNameName='bg-teal-200 flex md:gap-x-10'>
@@ -18,8 +20,8 @@ function Navbar({title}) {
         </NavLink>
     </ul>
 </div>  */}
-<nav className="navbar navbar-expand-lg navbar-light bg-light">
-  <div className="container">
+<nav className="navbar navbar-expand-lg navbar-light bg-light py-md-3">
+  <div className="container-md">
       <div className='d-flex flex-row justify-content-between gap-x-5 align-items-center'>
           <Logo src={logo} alt="logo"/>
     <NavLink to="/" className="navbar-brand" >{title}</NavLink>
@@ -28,7 +30,7 @@ function Navbar({title}) {
       <span className="navbar-toggler-icon"></span>
     </button>
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul className="navbar-nav me-auto mb-2 mb-lg-0 md:mx-60">
+      <ul className="navbar-nav mx-auto mb-2 mb-lg-0 ">
         <li className="nav-item">
           <NavLink to="/" className="nav-link" aria-current="page">Home</NavLink>
         </li>
@@ -49,7 +51,7 @@ function Navbar({title}) {
         </li>
         <li className="nav-item dropdown">
           <NavLink to="/" className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Others
+            More
           </NavLink>
           <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><NavLink to="/" className="dropdown-item" >Action</NavLink></li>
@@ -60,9 +62,12 @@ function Navbar({title}) {
         </li>        
       </ul>
       <form className="d-flex">
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button className="btn btn-outline-primary" type="submit">Search</button>
+        <input className="form-control me-2 xs:w-[18rem]" type="search" placeholder="Search" aria-label="Search"/>
+        {/* <button className="btn btn-outline-primary" type="submit">Search</button> */}
       </form>
+      <div className='ms-md-5 pt-4 pt-md-0 rounded-lg overflow-hidden'>
+        <button className='btn btn-primary  d-flex items-center gap-x-2 px-md-3 font-montserrat tracking-wider text-white' onClick={()=>navigate('/Login')}><FaUserAlt color='white'/>Login</button>
+        </div>      
     </div>
   </div>
 </nav>    

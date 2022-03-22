@@ -8,15 +8,15 @@ import {FaTwitter,FaFacebook,FaInstagram,FaRedditAlien,FaGithub,FaRegCopyright} 
 function FooterHome() {
   return (
       <>
-      <Footer style={{backgroundColor:'#002523'}} className="font-montserrat pb-md-4">
+      <Footer style={{backgroundColor:'#002523'}} className="font-montserrat py-md-4">
     {/* <div>FooterHome</div> */}
     <div className='d-flex flex-column items-center'>
     <h2 className='text-center text-white text-4xl py-2'>Be the first to know about<span className='font-bold'> crypto news every day .</span></h2>
     <p className='text-sm text-slate-400 pb-md-4'>Get the latest crypto news, updates, and reports by subscribing to our free newsletter.</p>
     </div>
     <form action="" className='d-flex justify-center gap-x-10 py-md-4'>
-    <label htmlFor='exampleInputEmail1' class="form-label">Email address</label>
-    <input type="text" class="form-control w-1/4 px-3 tracking-wider" id="exampleInputEmail1" placeholder='Drop your mail here'/>
+    <label htmlFor='exampleInputEmail1' className="form-label">Email address</label>
+    <input type="text" className="form-control w-1/4 px-3 tracking-wider" id="exampleInputEmail1" placeholder='Drop your mail here'/>
     <button className='btn btn-success px-md-5 font-montserrat tracking-wider'>Subscribe</button>
     </form>
     <FootLinks className='d-flex justify-evenly pt-md-5'>

@@ -34,12 +34,12 @@ function CoinHome() {
     // console.log(coins)   
   return (
       <>
-      <Coin className='d-flex flex-column justify-content-center'>
-    <div>coinHome</div>
+      <Coin className='d-flex flex-column justify-content-center py-md-5'>
+    {/* <div>coinHome</div> */}
     <div className='px-md-5'>
-    <h1 className='fs-2'>Coins</h1>    
+    <h1 className='fs-2 font-montserrat tracking-wider'>Coins</h1>    
     </div>
-    <div className="data table-responsive-md">
+    <div className="data table-responsive-md px-md-5">
         <table style={{backgroundColor:"rgba(31, 92, 89, 0.1)"}} className="table table-borderless table-hover text-white container my-md-5"> 
             <thead className='table-light'>
                 <tr>
@@ -82,8 +82,7 @@ const tD={
 }
  const Coin=styled.div`
     background-color:#002523;
-    color:white;  
-    height:100vh  
+    color:white;       
  `
  const Row=styled.tr`
     &:hover{

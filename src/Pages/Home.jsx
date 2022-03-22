@@ -7,7 +7,7 @@ import FooterHome from '../Components/FooterHome'
 
 function Home() {
   return ( <>    
-  <div>Home</div>           
+  {/* <div>Home</div>            */}
     <Navbar/> 
     <HeroSlider/> 
     <CoinHome/>   

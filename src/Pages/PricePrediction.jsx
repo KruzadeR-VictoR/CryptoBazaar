@@ -4,8 +4,9 @@ import Navbar from '../Components/Navbar'
 function PricePrediction() {
   return (
       <>
-    <div>PricePrediction</div>
     <Navbar/>
+    <div className='grid place-items-center h-[100vh] text-3xl font-bold'>PricePrediction</div>
+
     </>
   )
 }

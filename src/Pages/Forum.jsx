@@ -5,8 +5,8 @@ import Navbar from '../Components/Navbar'
 function Forum() {
   return (
       <>
-    <div>Forum</div>
     <Navbar/>
+    <div className='grid place-items-center h-[100vh] text-3xl font-bold'>Forum</div>
     </>
   )
 }

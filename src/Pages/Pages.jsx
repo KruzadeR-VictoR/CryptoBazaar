@@ -6,6 +6,8 @@ import PricePrediction from './PricePrediction'
 import Forum from './Forum'
 import NewsPage from './NewsPage'
 import ErrorPage from './ErrorPage'
+import Login from '../Components/Login'
+import SingleCoin from './Singlecoin'
 import { Routes,Route } from 'react-router-dom'
 
 
@@ -17,7 +19,9 @@ function Pages() {
           <Route path="/Portfolio" element={<Portfolio/>}/>
           <Route path="/PricePrediction" element={<PricePrediction/>}/>
           <Route path="/News" element={<NewsPage/>}/>
-          <Route path="/Forum" element={<Forum/>}/>
+          <Route path="/Forum" element={<Forum/>}/>          
+          <Route path="/Login" element={<Login/>}/>
+          <Route path='/Coins/:id' element={<SingleCoin/>}/>
           <Route path="*" element={<ErrorPage/>}/>
     </Routes>
   )
