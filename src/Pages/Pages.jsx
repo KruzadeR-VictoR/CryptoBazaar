@@ -19,8 +19,9 @@ function Pages() {
           <Route path="/Portfolio" element={<Portfolio/>}/>
           <Route path="/PricePrediction" element={<PricePrediction/>}/>
           <Route path="/News" element={<NewsPage/>}/>
+          <Route path="/Transaction" element={<Forum/>}/>          
           <Route path="/Forum" element={<Forum/>}/>          
-          <Route path="/Login" element={<Login/>}/>
+          <Route path="/Login" element={<Login/>}/>          
           <Route path='/Coins/:id' element={<SingleCoin/>}/>
           <Route path="*" element={<ErrorPage/>}/>
     </Routes>

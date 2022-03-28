@@ -73,11 +73,11 @@ function Coins() {
     </div>
     <Pagination className='d-flex justify-center py-5'>
   <ul className="pagination">
-    <li className="page-item"><Link to="/news/prev" class="page-link">Previous</Link></li>
-    <li className="page-item active"><Link to="/news/1" class="page-link">1</Link></li>
-    <li className="page-item"><Link to="/news/2" class="page-link" onClick={()=>setPage(2)}>2</Link></li>
-    <li className="page-item"><Link to="/news/3" class="page-link">3</Link></li>
-    <li className="page-item"><Link to="/news/next" class="page-link">Next</Link></li>
+    <li className="page-item"><Link to="/news/prev" className="page-link">Previous</Link></li>
+    <li className="page-item active"><Link to="/news/1" className="page-link">1</Link></li>
+    <li className="page-item"><Link to="/news/2" className="page-link" onClick={()=>setPage(2)}>2</Link></li>
+    <li className="page-item"><Link to="/news/3" className="page-link">3</Link></li>
+    <li className="page-item"><Link to="/news/next" className="page-link">Next</Link></li>
   </ul>
 </Pagination> 
     <hr />

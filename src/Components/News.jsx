@@ -30,14 +30,14 @@ function News() {
             const news_data=res.results
             console.log(news_data);
             setAllnews(news_data)
-    }
+    }    
   return (<>
     <NewsPage className='p-md-5'>
     <h1 className='fs-2 font-montserrat tracking-wider'>News and Events</h1>
     <NewsHead className='d-flex justify-center gap-x-10 pt-md-5'>
     {allnews.slice(0,3).map((news)=>(        
-        <>              
-            <div className='card cursor-pointer rounded-md overflow-hidden hover:-translate-y-5 transition-all' style={{width:"18rem"}} onClick={()=>{window.open(`http://${news.domain}/${news.slug}`)}}>
+        <>                      
+            <div key={news?.id} className='card cursor-pointer rounded-md overflow-hidden hover:-translate-y-5 transition-all' style={{width:"18rem"}} onClick={()=>{window.open(`http://${news.domain}/${news.slug}`)}}>
                 <img src={image} alt="" />
                 <div className='card-body'>
                     <h5 className='card-title'>{news.title}</h5>
@@ -52,7 +52,7 @@ function News() {
     <NewsStack className='d-flex justify-center pt-md-5'>
         <div>
     {allnews.slice(3,13).map((news,index)=>(        
-        <div className='d-flex gap-x-5 my-md-3 bg-slate-100 p-2 py-3 rounded-md cursor-pointer' onClick={()=>{window.open(`http://${news.domain}/${news.slug}`)}}>
+        <div key={news?.id} className='d-flex gap-x-5 my-md-3 bg-slate-100 p-2 py-3 rounded-md cursor-pointer' onClick={()=>{window.open(`http://${news.domain}/${news.slug}`)}}>
             <Image src={image} alt="" />
             <div>
                 <h5 className='font-bold'>{news.title}</h5>
