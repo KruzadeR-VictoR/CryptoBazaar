@@ -6,10 +6,7 @@ import Navbar from '../Components/Navbar'
 import Footer from './Footer'
 
 function Coins() {
-  const navigate=useNavigate()
-    useEffect(()=>{
-        getCoins()
-    },[])
+  const navigate=useNavigate()   
     const [page,setPage]=useState(1)
     const [coins,setCoins]=useState([])
     const baseUrl="https://api.coingecko.com/api/v3/coins/"    
@@ -32,7 +29,11 @@ function Coins() {
         .catch((error)=>{
             console.log("Error : "+error);
         })        
-    }         
+    }    
+     useEffect(()=>{
+        getCoins()
+    },[page])      
+    // console.log(`${page+11+12}`);  
   return (
       <>
     {/* <div>Coins</div> */}
@@ -60,7 +61,7 @@ function Coins() {
                     <Row key={coin.id}>
                       {/* {console.log(coin)} */}
                         <td style={tD}>{coin.market_data.market_cap_rank}</td>
-                        <td style={tD} className='d-flex flex-row cursor-pointer' onClick={()=>navigate(`/Coins/${coin.name}`)}><img className='mx-md-3' src={coin.image.small} alt="" /><div className='d-flex flex-column hover:underline'>{coin.name}<span>{coin.symbol}</span></div></td>
+                        <td style={tD} className='d-flex flex-row cursor-pointer' onClick={()=>navigate(`/Coins/${coin.id}`)}><img className='mx-md-3' src={coin.image.small} alt="" /><div className='d-flex flex-column hover:underline'>{coin.name}<span>{coin.symbol}</span></div></td>
                         <td style={tD}>{coin.market_data.current_price.inr}</td>
                         <td style={tD}>{coin.market_data.market_cap.inr}</td>  
                         <td style={tD}>{coin.market_data.price_change_24h}</td>                      
@@ -73,11 +74,13 @@ function Coins() {
     </div>
     <Pagination className='d-flex justify-center py-5'>
   <ul className="pagination">
-    <li className="page-item"><Link to="/news/prev" className="page-link">Previous</Link></li>
-    <li className="page-item active"><Link to="/news/1" className="page-link">1</Link></li>
-    <li className="page-item"><Link to="/news/2" className="page-link" onClick={()=>setPage(2)}>2</Link></li>
-    <li className="page-item"><Link to="/news/3" className="page-link">3</Link></li>
-    <li className="page-item"><Link to="/news/next" className="page-link">Next</Link></li>
+    {/* <li className="page-item"><Link to="" className="page-link" onClick={()=>{setPage(2)}}>Previous</Link></li> */}
+    <li className="page-item"><Link to="" className="page-link" onClick={()=>{setPage(1)}}>1</Link></li>
+    <li className="page-item"><Link to="" className="page-link" onClick={()=>{setPage(2)}}>2</Link></li>
+    <li className="page-item"><Link to="" className="page-link" onClick={()=>{setPage(3)}}>3</Link></li>
+    <li className="page-item"><Link to="" className="page-link" onClick={()=>{setPage(4)}}>4</Link></li>
+    <li className="page-item"><Link to="" className="page-link" onClick={()=>{setPage(5)}}>5</Link></li>
+    {/* <li className="page-item"><Link to="" className="page-link" onClick={()=>{setPage(`${page}`); console.log(page)}}>Next</Link></li> */}
   </ul>
 </Pagination> 
     <hr />

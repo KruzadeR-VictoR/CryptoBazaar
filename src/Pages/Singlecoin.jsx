@@ -50,14 +50,14 @@ function Singlecoin() {
                 </div>
               </div>
               <div className="px-md-5">
-                <h1 className="text-3xl text-white">{coin?.market_data?.current_price.usd}</h1>
+                <h1 className="text-3xl text-white">$ {coin?.market_data?.current_price.usd}</h1>
                 <span className="text-slate-100">{coin?.market_data?.current_price.btc} BTC</span>
               </div>
             </div>
             <div className="d-flex gap-x-10 pt-md-4 mt-md-2">
               <div className="d-flex flex-column gap-y-2">
                 <h3 className="text-slate-400">MARKET CAP</h3>
-                <h2 className="font-bold text-white tracking-wide">${coin.market_data?.market_cap.usd}</h2>
+                <h2 className="font-bold text-white tracking-wide">$ {coin.market_data?.market_cap.usd}</h2>
               </div>
               <div className="d-flex flex-column gap-y-2">
                 <h3 className="text-slate-400">VOLUME</h3>
@@ -78,12 +78,12 @@ function Singlecoin() {
             <div className="d-flex justify-center items-center gap-x-3 ">
               <div className="d-flex rounded-md overflow-hidden">
                 <div className="bg-[#596063] d-flex p-2 px-md-3 text-white focus:text-white">
-                  BTC
+                  {coin.symbol?.toUpperCase()}
                 </div>
                 <input
                   type="text"
                   className="bg-[#1B4D4A] w-100 px-md-3 text-white"
-                  placeholder="Convert BTC"
+                  placeholder="Enter amount"
                 />
               </div>
               <AiOutlineSwap color="#00D2C6" />
@@ -94,7 +94,7 @@ function Singlecoin() {
                 <input
                   type="text"
                   className="bg-[#1B4D4A] w-100 px-md-3 text-white"
-                  placeholder="Convert INR"
+                  placeholder="Enter amount"
                 />
               </div>
             </div>
@@ -188,33 +188,33 @@ function Singlecoin() {
               <div className="d-flex gap-x-10">
                 <div>
                   <h1 className="text-slate-400">CIRC. SUPPLY</h1>
-                  <span className="font-bold">{coin.market_data?.circulating_supply}</span>
+                  <span className="font-bold">$ {coin.market_data?.circulating_supply}</span>
                 </div>
                 <div>
                   <h1 className="text-slate-400">TOTAL SUPPLY</h1>
-                  <span className="font-bold">{coin.market_data?.total_supply}</span>
+                  <span className="font-bold">$ {coin.market_data?.total_supply}</span>
                 </div>
                 <div>
                   <h1 className="text-slate-400">MAX SUPPLY</h1>
-                  <span className="font-bold">{coin.market_data?.max_supply}</span>
+                  <span className="font-bold">$ {coin.market_data?.max_supply}</span>
                 </div>
                 <div>
                   <h1 className="text-slate-400">TOTAL CAP</h1>
-                  <span className="font-bold">{coin.market_data?.total_volume.usd}</span>
+                  <span className="font-bold">$ {coin.market_data?.total_volume.usd}</span>
                 </div>
               </div>
               <div className="d-flex gap-x-10">
                 <div>
                   <h1 className="text-slate-400">24H RANGE</h1>
-                  <span className="font-bold">18.942 M</span>
+                  <span className="font-bold">$ 18.942 M</span>
                 </div>
                 <div>
                   <h1 className="text-slate-400">24H LOW</h1>
-                  <span className="font-bold">{coin.market_data?.low_24h.usd}</span>
+                  <span className="font-bold">$ {coin.market_data?.low_24h.usd}</span>
                 </div>
                 <div>
                   <h1 className="text-slate-400">24H HIGH</h1>
-                  <span className="font-bold">{coin.market_data?.high_24h.usd}</span>
+                  <span className="font-bold">$ {coin.market_data?.high_24h.usd}</span>
                 </div>
               </div>
               <div className="d-flex gap-x-10">
@@ -224,7 +224,7 @@ function Singlecoin() {
                 </div>
                 <div>
                   <h1 className="text-slate-400">TVL</h1>
-                  <span className="font-bold">{coin.market_data?.total_value_locked?coin.market_data?.total_value_locked : '-'}</span>
+                  <span className="font-bold">$ {coin.market_data?.total_value_locked?coin.market_data?.total_value_locked : '-'}</span>
                 </div>
                 {/* <div>
                   <h1 className="text-slate-400">ASK +2%</h1>
@@ -355,7 +355,7 @@ function Singlecoin() {
         </div>
         {/* about coin */}
         <div className="px-[15rem] py-md-5 bg-[#0E3533]">
-          <h1 className="text-2xl text-white">About BTC</h1>
+          <h1 className="text-2xl text-white">About {coin.symbol?.toUpperCase()}</h1>
           <div className="d-flex pt-md-5">
             <div className="basis-1/2 text-white d-flex flex-column gap-y-4 ">
               <div className="d-flex items-center justify-between pe-md-5">
@@ -404,7 +404,7 @@ function Singlecoin() {
               </div> */}
             </div>
             <div className="basis-1/2 d-flex flex-column">
-              <h1 className="text-2xl text-white">What is BTC ?</h1>
+              <h1 className="text-2xl text-white">What is {coin.name} ?</h1>
               <p className="pt-md-4 text-slate-400">
                 {
                 coin.description?.en
@@ -416,7 +416,7 @@ function Singlecoin() {
       </SingleCoin>
       <Footer />
     </>
-  );
+  )
 }
 
 const SingleCoin = styled.div``;
