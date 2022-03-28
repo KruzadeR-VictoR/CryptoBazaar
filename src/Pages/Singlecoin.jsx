@@ -27,41 +27,56 @@ function Singlecoin() {
     setCoin(data);
   };
   useEffect(() => {
-    getCoinData();
+    getCoinData();    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
-  // console.log(coins.name);
+  // console.log(coins.name); 
   return (
     <>
       <Navbar />
-      <div className="bg-[#1F3736] text-white flex flex-column items-center text-2xl font-montserrat tracking-wide py-md-3">{coin.symbol?.toUpperCase()} Price <span className="text-sm text-gray-300">All about {coin.name}</span></div>      
+      <div className="bg-[#1F3736] text-white flex flex-column items-center text-2xl font-montserrat tracking-wide py-md-3">
+        {coin.symbol?.toUpperCase()} Price{" "}
+        <span className="text-sm text-gray-300">All about {coin.name}</span>
+      </div>
       <SingleCoin className="bg-[#1F3736]  font-montserrat">
         {/* first section */}
         <div className=" container d-flex py-md-3 mx-auto whitespace-nowrap">
           <div className="basis-1/2 d-flex flex-column py-md-3 px-md-4 gap-y-4">
             <div className="d-flex gap-x-10">
               <div className="d-flex items-center gap-x-4">
-                <img className="object-fit" src={coin.image?.small} alt={coin.name} />
+                <img
+                  className="object-fit"
+                  src={coin.image?.small}
+                  alt={coin.name}
+                />
                 <div>
-                <h1 className="text-3xl text-white">{coin?.name}</h1>
-                <span className="text-slate-100">
-                  {coin.symbol?.toUpperCase()}
-                </span>
+                  <h1 className="text-3xl text-white">{coin?.name}</h1>
+                  <span className="text-slate-100">
+                    {coin.symbol?.toUpperCase()}
+                  </span>
                 </div>
               </div>
               <div className="px-md-5">
-                <h1 className="text-3xl text-white">$ {coin?.market_data?.current_price.usd}</h1>
-                <span className="text-slate-100">{coin?.market_data?.current_price.btc} BTC</span>
+                <h1 className="text-3xl text-white">
+                  $ {coin?.market_data?.current_price.usd}
+                </h1>
+                <span className="text-slate-100">
+                  {coin?.market_data?.current_price.btc} BTC
+                </span>
               </div>
             </div>
             <div className="d-flex gap-x-10 pt-md-4 mt-md-2">
               <div className="d-flex flex-column gap-y-2">
                 <h3 className="text-slate-400">MARKET CAP</h3>
-                <h2 className="font-bold text-white tracking-wide">$ {coin.market_data?.market_cap.usd}</h2>
+                <h2 className="font-bold text-white tracking-wide">
+                  $ {coin.market_data?.market_cap.usd}
+                </h2>
               </div>
               <div className="d-flex flex-column gap-y-2">
                 <h3 className="text-slate-400">VOLUME</h3>
-                <h2 className="font-bold text-white tracking-wide">$ {coin.market_data?.total_volume.usd}</h2>
+                <h2 className="font-bold text-white tracking-wide">
+                  $ {coin.market_data?.total_volume.usd}
+                </h2>
               </div>
               <div className="d-flex flex-column gap-y-2">
                 <h3 className="text-slate-400">VOL/MCAP</h3>
@@ -69,7 +84,9 @@ function Singlecoin() {
               </div>
               <div className="d-flex flex-column gap-y-2">
                 <h3 className="text-slate-400">ALL TIME HIGH</h3>
-                <h2 className="font-bold text-white tracking-wide">$ {coin.market_data?.ath.usd}</h2>
+                <h2 className="font-bold text-white tracking-wide">
+                  $ {coin.market_data?.ath.usd}
+                </h2>
               </div>
             </div>
           </div>
@@ -107,79 +124,169 @@ function Singlecoin() {
             <div className="d-flex gap-x-10 whitespace-nowrap">
               <div>
                 <h1 className="text-sm text-slate-400">1H USD</h1>
-                <span className="font-bold tracking-wide">{coin.market_data?.price_change_percentage_1h_in_currency.usd.toFixed(2)}%</span>
+                <span className="font-bold tracking-wide">
+                  {coin.market_data?.price_change_percentage_1h_in_currency.usd.toFixed(
+                    2
+                  )}
+                  %
+                </span>
               </div>
               <div>
                 <h1 className="text-sm text-slate-400">24H USD</h1>
-                <span className="font-bold tracking-wide">{coin.market_data?.price_change_percentage_24h_in_currency.usd.toFixed(2)}%</span>
+                <span className="font-bold tracking-wide">
+                  {coin.market_data?.price_change_percentage_24h_in_currency.usd.toFixed(
+                    2
+                  )}
+                  %
+                </span>
               </div>
               <div>
                 <h1 className="text-sm text-slate-400">7D USD</h1>
-                <span className="font-bold tracking-wide">{coin.market_data?.price_change_percentage_7d_in_currency.usd.toFixed(2)}%</span>
+                <span className="font-bold tracking-wide">
+                  {coin.market_data?.price_change_percentage_7d_in_currency.usd.toFixed(
+                    2
+                  )}
+                  %
+                </span>
               </div>
               <div>
                 <h1 className="text-sm text-slate-400">30D USD</h1>
-                <span className="font-bold tracking-wide">{coin.market_data?.price_change_percentage_30d_in_currency.usd.toFixed(2)}%</span>
+                <span className="font-bold tracking-wide">
+                  {coin.market_data?.price_change_percentage_30d_in_currency.usd.toFixed(
+                    2
+                  )}
+                  %
+                </span>
               </div>
               <div>
                 <h1 className="text-sm text-slate-400">60D USD</h1>
-                <span className="font-bold tracking-wide">{coin.market_data?.price_change_percentage_60d_in_currency.usd.toFixed(2)}%</span>
+                <span className="font-bold tracking-wide">
+                  {coin.market_data?.price_change_percentage_60d_in_currency.usd.toFixed(
+                    2
+                  )}
+                  %
+                </span>
               </div>
               <div>
                 <h1 className="text-sm text-slate-400">1Y USD</h1>
-                <span className="font-bold tracking-wide">{coin.market_data?.price_change_percentage_1y_in_currency.usd.toFixed(2)}%</span>
+                <span className="font-bold tracking-wide">
+                  {coin.market_data?.price_change_percentage_1y_in_currency.usd.toFixed(
+                    2
+                  )}
+                  %
+                </span>
               </div>
             </div>
             <div className="d-flex gap-x-10 whitespace-nowrap">
               <div>
                 <h1 className="text-sm text-slate-400">1H BTC</h1>
-                <span className="font-bold tracking-wide">{coin.market_data?.price_change_percentage_1h_in_currency.btc.toFixed(2)}%</span>
+                <span className="font-bold tracking-wide">
+                  {coin.market_data?.price_change_percentage_1h_in_currency.btc.toFixed(
+                    2
+                  )}
+                  %
+                </span>
               </div>
               <div>
                 <h1 className="text-sm text-slate-400">24H BTC</h1>
-                <span className="font-bold tracking-wide">{coin.market_data?.price_change_percentage_24h_in_currency.btc.toFixed(2)}%</span>
+                <span className="font-bold tracking-wide">
+                  {coin.market_data?.price_change_percentage_24h_in_currency.btc.toFixed(
+                    2
+                  )}
+                  %
+                </span>
               </div>
               <div>
                 <h1 className="text-sm text-slate-400">7D BTC</h1>
-                <span className="font-bold tracking-wide">{coin.market_data?.price_change_percentage_7d_in_currency.btc.toFixed(2)}%</span>
+                <span className="font-bold tracking-wide">
+                  {coin.market_data?.price_change_percentage_7d_in_currency.btc.toFixed(
+                    2
+                  )}
+                  %
+                </span>
               </div>
               <div>
                 <h1 className="text-sm text-slate-400">30D BTC</h1>
-                <span className="font-bold tracking-wide">{coin.market_data?.price_change_percentage_30d_in_currency.btc.toFixed(2)}%</span>
+                <span className="font-bold tracking-wide">
+                  {coin.market_data?.price_change_percentage_30d_in_currency.btc.toFixed(
+                    2
+                  )}
+                  %
+                </span>
               </div>
               <div>
                 <h1 className="text-sm text-slate-400">60D BTC</h1>
-                <span className="font-bold tracking-wide">{coin.market_data?.price_change_percentage_60d_in_currency.btc.toFixed(2)}%</span>
+                <span className="font-bold tracking-wide">
+                  {coin.market_data?.price_change_percentage_60d_in_currency.btc.toFixed(
+                    2
+                  )}
+                  %
+                </span>
               </div>
               <div>
                 <h1 className="text-sm text-slate-400">1Y BTC</h1>
-                <span className="font-bold tracking-wide">{coin.market_data?.price_change_percentage_1y_in_currency.btc.toFixed(2)}%</span>
+                <span className="font-bold tracking-wide">
+                  {coin.market_data?.price_change_percentage_1y_in_currency.btc.toFixed(
+                    2
+                  )}
+                  %
+                </span>
               </div>
             </div>
             <div className="d-flex gap-x-10 whitespace-nowrap">
               <div>
                 <h1 className="text-sm text-slate-400">1H ETH</h1>
-                <span className="font-bold tracking-wide">{coin.market_data?.price_change_percentage_1h_in_currency.eth.toFixed(2)}%</span>
+                <span className="font-bold tracking-wide">
+                  {coin.market_data?.price_change_percentage_1h_in_currency.eth.toFixed(
+                    2
+                  )}
+                  %
+                </span>
               </div>
               <div>
                 <h1 className="text-sm text-slate-400">24H ETH</h1>
-                <span className="font-bold tracking-wide">{coin.market_data?.price_change_percentage_24h_in_currency.eth.toFixed(2)}%</span>
+                <span className="font-bold tracking-wide">
+                  {coin.market_data?.price_change_percentage_24h_in_currency.eth.toFixed(
+                    2
+                  )}
+                  %
+                </span>
               </div>
               <div>
                 <h1 className="text-sm text-slate-400">7D ETH</h1>
-                <span className="font-bold tracking-wide">{coin.market_data?.price_change_percentage_7d_in_currency.eth.toFixed(2)}%</span>
+                <span className="font-bold tracking-wide">
+                  {coin.market_data?.price_change_percentage_7d_in_currency.eth.toFixed(
+                    2
+                  )}
+                  %
+                </span>
               </div>
               <div>
                 <h1 className="text-sm text-slate-400">30D ETH</h1>
-                <span className="font-bold tracking-wide">{coin.market_data?.price_change_percentage_30d_in_currency.eth.toFixed(2)}%</span>
+                <span className="font-bold tracking-wide">
+                  {coin.market_data?.price_change_percentage_30d_in_currency.eth.toFixed(
+                    2
+                  )}
+                  %
+                </span>
               </div>
               <div>
                 <h1 className="text-sm text-slate-400">60D ETH</h1>
-                <span className="font-bold tracking-wide">{coin.market_data?.price_change_percentage_60d_in_currency.eth.toFixed(2)}%</span>
+                <span className="font-bold tracking-wide">
+                  {coin.market_data?.price_change_percentage_60d_in_currency.eth.toFixed(
+                    2
+                  )}
+                  %
+                </span>
               </div>
               <div>
                 <h1 className="text-sm text-slate-400">1Y ETH</h1>
-                <span className="font-bold tracking-wide">{coin.market_data?.price_change_percentage_1y_in_currency.eth.toFixed(2)}%</span>
+                <span className="font-bold tracking-wide">
+                  {coin.market_data?.price_change_percentage_1y_in_currency.eth.toFixed(
+                    2
+                  )}
+                  %
+                </span>
               </div>
             </div>
           </div>
@@ -188,19 +295,27 @@ function Singlecoin() {
               <div className="d-flex gap-x-10">
                 <div>
                   <h1 className="text-slate-400">CIRC. SUPPLY</h1>
-                  <span className="font-bold">$ {coin.market_data?.circulating_supply}</span>
+                  <span className="font-bold">
+                    $ {coin.market_data?.circulating_supply}
+                  </span>
                 </div>
                 <div>
                   <h1 className="text-slate-400">TOTAL SUPPLY</h1>
-                  <span className="font-bold">$ {coin.market_data?.total_supply}</span>
+                  <span className="font-bold">
+                    $ {coin.market_data?.total_supply}
+                  </span>
                 </div>
                 <div>
                   <h1 className="text-slate-400">MAX SUPPLY</h1>
-                  <span className="font-bold">$ {coin.market_data?.max_supply}</span>
+                  <span className="font-bold">
+                    $ {coin.market_data?.max_supply}
+                  </span>
                 </div>
                 <div>
                   <h1 className="text-slate-400">TOTAL CAP</h1>
-                  <span className="font-bold">$ {coin.market_data?.total_volume.usd}</span>
+                  <span className="font-bold">
+                    $ {coin.market_data?.total_volume.usd}
+                  </span>
                 </div>
               </div>
               <div className="d-flex gap-x-10">
@@ -210,11 +325,15 @@ function Singlecoin() {
                 </div>
                 <div>
                   <h1 className="text-slate-400">24H LOW</h1>
-                  <span className="font-bold">$ {coin.market_data?.low_24h.usd}</span>
+                  <span className="font-bold">
+                    $ {coin.market_data?.low_24h.usd}
+                  </span>
                 </div>
                 <div>
                   <h1 className="text-slate-400">24H HIGH</h1>
-                  <span className="font-bold">$ {coin.market_data?.high_24h.usd}</span>
+                  <span className="font-bold">
+                    $ {coin.market_data?.high_24h.usd}
+                  </span>
                 </div>
               </div>
               <div className="d-flex gap-x-10">
@@ -224,7 +343,12 @@ function Singlecoin() {
                 </div>
                 <div>
                   <h1 className="text-slate-400">TVL</h1>
-                  <span className="font-bold">$ {coin.market_data?.total_value_locked?coin.market_data?.total_value_locked : '-'}</span>
+                  <span className="font-bold">
+                    ${" "}
+                    {coin.market_data?.total_value_locked
+                      ? coin.market_data?.total_value_locked
+                      : "-"}
+                  </span>
                 </div>
                 {/* <div>
                   <h1 className="text-slate-400">ASK +2%</h1>
@@ -251,12 +375,44 @@ function Singlecoin() {
             <MdGroups
               size="1.5rem"
               className="cursor-pointer hover:text-white transition-all"
-            onClick={()=>{window.open(`${coin.links.homepage[0]}`)}} />
-            <FaLink className="cursor-pointer hover:text-white transition-all" onClick={()=>{window.open(`${coin.links.homepage[0]}`)}} />
-            <FaTwitter className="cursor-pointer hover:text-white transition-all" onClick={()=>{window.open(`https://twitter.com/${coin.links.twitter_screen_name}`)}} />
-            <FaRedditAlien className="cursor-pointer hover:text-white transition-all" onClick={()=>{window.open(`${coin.links.subreddit_url}`)}} />
-            <FaGithub className="cursor-pointer hover:text-white transition-all" onClick={()=>{window.open(`${coin.links.repos_url.github[0]}`)}} />
-            <FaFacebook className="cursor-pointer hover:text-white transition-all" onClick={()=>{window.open(`https://www.facebook.com/${coin.links.facebook_username}`)}} />
+              onClick={() => {
+                window.open(`${coin.links.homepage[0]}`);
+              }}
+            />
+            <FaLink
+              className="cursor-pointer hover:text-white transition-all"
+              onClick={() => {
+                window.open(`${coin.links.homepage[0]}`);
+              }}
+            />
+            <FaTwitter
+              className="cursor-pointer hover:text-white transition-all"
+              onClick={() => {
+                window.open(
+                  `https://twitter.com/${coin.links.twitter_screen_name}`
+                );
+              }}
+            />
+            <FaRedditAlien
+              className="cursor-pointer hover:text-white transition-all"
+              onClick={() => {
+                window.open(`${coin.links.subreddit_url}`);
+              }}
+            />
+            <FaGithub
+              className="cursor-pointer hover:text-white transition-all"
+              onClick={() => {
+                window.open(`${coin.links.repos_url.github[0]}`);
+              }}
+            />
+            <FaFacebook
+              className="cursor-pointer hover:text-white transition-all"
+              onClick={() => {
+                window.open(
+                  `https://www.facebook.com/${coin.links.facebook_username}`
+                );
+              }}
+            />
           </div>
         </div>
         <hr className="bg-black" />
@@ -280,46 +436,82 @@ function Singlecoin() {
               <tbody className="text-slate-400">
                 <tr>
                   <th scope="row">1</th>
-                  <td>BTC/USDT</td>
-                  <td>FTXUS</td>
-                  <td>$2379.60</td>
-                  <td>$74.40 M</td>
+                  <td>{coin.symbol?.toUpperCase()}/USDT</td>
+                  <td>Binance</td>
+                  <td>$ {coin.market_data?.current_price.usd}</td>
+                  <td>{coin.market_data?.market_cap_change_percentage_24h.toFixed(2)} %</td>
                   <td>$39.72 M</td>
                   <td>
-                    <button className="btn btn-secondary">trade now</button>
+                    <button
+                      className="btn btn-secondary"
+                      onClick={() => {
+                        window.open(
+                          `https://www.binance.com/en/trade/${coin.symbol?.toUpperCase()}_USDT`
+                        );
+                      }}
+                    >
+                      trade now
+                    </button>
                   </td>
                 </tr>
                 <tr>
                   <th scope="row">2</th>
-                  <td>BTC/USDT</td>
-                  <td>FTXUS</td>
-                  <td>$2379.60</td>
-                  <td>$74.40 M</td>
+                  <td>{coin.symbol?.toUpperCase()}/USDT</td>
+                  <td>KuCoin</td>
+                  <td>$ {coin.market_data?.current_price.usd}</td>
+                  <td>{coin.market_data?.market_cap_change_percentage_24h.toFixed(2)} %</td>
                   <td>$39.72 M</td>
                   <td>
-                    <button className="btn btn-secondary">trade now</button>
+                    <button
+                      className="btn btn-secondary"
+                      onClick={() => {
+                        window.open(
+                          `https://www.kucoin.com/trade/${coin.symbol?.toUpperCase()}-USDT`
+                        );
+                      }}
+                    >
+                      trade now
+                    </button>
                   </td>
                 </tr>
                 <tr>
                   <th scope="row">3</th>
-                  <td>BTC/USDT</td>
+                  <td>{coin.symbol?.toUpperCase()}/USDT</td>
                   <td>FTXUS</td>
-                  <td>$2379.60</td>
-                  <td>$74.40 M</td>
+                  <td>$ {coin.market_data?.current_price.usd}</td>
+                  <td>{coin.market_data?.market_cap_change_percentage_24h.toFixed(2)} %</td>
                   <td>$39.72 M</td>
                   <td>
-                    <button className="btn btn-secondary">trade now</button>
+                    <button
+                      className="btn btn-secondary"
+                      onClick={() => {
+                        window.open(
+                          `https://ftx.com/trade/${coin.symbol?.toUpperCase()}/USDT`
+                        );
+                      }}
+                    >
+                      trade now
+                    </button>
                   </td>
                 </tr>
                 <tr>
                   <th scope="row">4</th>
-                  <td>BTC/USDT</td>
-                  <td>FTXUS</td>
-                  <td>$2379.60</td>
-                  <td>$74.40 M</td>
+                  <td>{coin.symbol?.toUpperCase()}/USDT</td>
+                  <td>WazirX</td>
+                  <td>$ {coin.market_data?.current_price.usd}</td>
+                  <td>{coin.market_data?.market_cap_change_percentage_24h.toFixed(2)} %</td>
                   <td>$39.72 M</td>
                   <td>
-                    <button className="btn btn-secondary">trade now</button>
+                    <button
+                      className="btn btn-secondary"
+                      onClick={() => {
+                        window.open(
+                          `https://wazirx.com/exchange/${coin.symbol?.toUpperCase()}-INR`
+                        );
+                      }}
+                    >
+                      trade now
+                    </button>
                   </td>
                 </tr>
               </tbody>
@@ -355,7 +547,9 @@ function Singlecoin() {
         </div>
         {/* about coin */}
         <div className="px-[15rem] py-md-5 bg-[#0E3533]">
-          <h1 className="text-2xl text-white">About {coin.symbol?.toUpperCase()}</h1>
+          <h1 className="text-2xl text-white">
+            About {coin.symbol?.toUpperCase()}
+          </h1>
           <div className="d-flex pt-md-5">
             <div className="basis-1/2 text-white d-flex flex-column gap-y-4 ">
               <div className="d-flex items-center justify-between pe-md-5">
@@ -364,7 +558,9 @@ function Singlecoin() {
               </div>
               <div className="d-flex items-center justify-between pe-md-5">
                 <h1 className="text-slate-200">Coin Rank</h1>
-                <span className="text-[#3cd6cc]">{coin.market_data?.market_cap_rank}</span>
+                <span className="text-[#3cd6cc]">
+                  {coin.market_data?.market_cap_rank}
+                </span>
               </div>
               <div className="d-flex items-center justify-between pe-md-5">
                 <h1 className="text-slate-200">Proof</h1>
@@ -380,16 +576,25 @@ function Singlecoin() {
               </div>
               <div className="d-flex items-center justify-between pe-md-5">
                 <h1 className="text-slate-200">24h MCap Change</h1>
-                <span className="text-[#3cd6cc]">{coin.market_data?.market_cap_change_percentage_24h.toFixed(3)}%</span>
+                <span className="text-[#3cd6cc]">
+                  {coin.market_data?.market_cap_change_percentage_24h.toFixed(
+                    3
+                  )}
+                  %
+                </span>
               </div>
               <div className="d-flex items-center justify-between pe-md-5">
                 <h1 className="text-slate-200">Price to BTC</h1>
-                <span className="text-[#3cd6cc]">{coin.market_data?.current_price.btc.toFixed(2)}</span>
-              </div>              
+                <span className="text-[#3cd6cc]">
+                  {coin.market_data?.current_price.btc.toFixed(2)}
+                </span>
+              </div>
               <div className="d-flex items-center justify-between pe-md-5">
                 <h1 className="text-slate-200">Fully Diluted Market Cap</h1>
-                <span className="text-[#3cd6cc]">${coin.market_data?.fully_diluted_valuation.usd}</span>
-              </div>              
+                <span className="text-[#3cd6cc]">
+                  ${coin.market_data?.fully_diluted_valuation.usd}
+                </span>
+              </div>
               {/* <div className="d-flex items-center gap-x-60">
                 <h1 className="text-slate-200">Coin Type</h1>
                 <span className="text-[#3cd6cc]">coin</span>
@@ -405,18 +610,14 @@ function Singlecoin() {
             </div>
             <div className="basis-1/2 d-flex flex-column">
               <h1 className="text-2xl text-white">What is {coin.name} ?</h1>
-              <p className="pt-md-4 text-slate-400">
-                {
-                coin.description?.en
-                }
-              </p>
+              <p className="pt-md-4 text-slate-400">{coin.description?.en}</p>
             </div>
           </div>
         </div>
       </SingleCoin>
       <Footer />
     </>
-  )
+  );
 }
 
 const SingleCoin = styled.div``;

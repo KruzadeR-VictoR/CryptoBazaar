@@ -56,7 +56,7 @@ function CoinHome() {
             {coins.slice(0,10).map((coin,index)=>(                                                                       
                     <Row key={coin.id}>
                         <td style={tD}>{coin.market_data.market_cap_rank}</td>
-                        <td style={tD} className='d-flex flex-row'><img className='mx-md-3' src={coin.image.small} alt="" /><div className='d-flex flex-column'>{coin.name}<span>{coin.symbol}</span></div></td>
+                        <td style={tD} className='d-flex flex-row cursor-pointer' onClick={()=>navigate(`/Coins/${coin.id}`)}><img className='mx-md-3' src={coin.image.small} alt="" /><div className='d-flex flex-column hover:underline'>{coin.name}<span>{coin.symbol}</span></div></td>
                         <td style={tD}>{coin.market_data.current_price.inr}</td>
                         <td style={tD}>{coin.market_data.market_cap.inr}</td>  
                         <td style={tD}>{coin.market_data.price_change_24h}</td>                      
