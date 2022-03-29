@@ -7,7 +7,7 @@ import { AiFillSetting } from "react-icons/ai";
 import { SiMicrosoftexcel } from "react-icons/si";
 
 
-function Portfolio() {
+function Portfolio({user}) {
   // to tpggle the eye button
   const [isClicked,setIsClicked]=useState(false)
   const isVisible=()=>{
@@ -46,7 +46,7 @@ const getCoins=async ()=>{
 }
   return (
       <>
-    <Navbar/>
+    <Navbar user={user}/>
     {/* <div className='grid place-items-center h-[100vh] text-3xl font-bold'>Portfolio</div> */}
     <Port className=' bg-[#1F3736] font-montserrat py-md-5'>
       <Header className='text-white d-flex justify-around items-center pb-md-2'>

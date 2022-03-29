@@ -1,13 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState} from 'react'
 import '../Styles/login.css'
 import Navbar from './Navbar'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { auth } from '../firebase'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import {FaFacebookF, FaGoogle, FaLinkedinIn} from 'react-icons/fa'
+// import { data } from 'autoprefixer'
 
 function Login() {
+
+	const navigate=useNavigate()
 
 const [slide,setSlide]=useState(false)
 const slidOn=()=>{
@@ -21,15 +26,41 @@ const slidOff=()=>{
 
    const [email,setEmail]=useState('')
    const [password,setPassword]=useState('')
+
+//    handle login data
+
+const handleLogin= async(e)=>{
+	e.preventDefault();
+	console.log(email,password);
+	try{
+	const result=await auth.signInWithEmailAndPassword(email,password)
+	// window.M.toast({html: `Welcome ${result.user.email}`,classes:"green"})
+	toast.success(`Welcome ${result.user.email}`,{position:"top-right"});
+
+	setTimeout(()=>navigate('/'),3000)
+
+	}catch(err){
+		// console.log(err)
+		// window.M.toast({html:err.message,classes:"green"})
+		toast.error(err.message,{position:"top-right"});
+	}
+}
+
+//    handle signUp data
    const handleSubmit= async(e)=>{
 		e.preventDefault();
 		console.log(email,password);
 		try{
 		const result=await auth.createUserWithEmailAndPassword(email,password)
 		// window.M.toast({html: `Welcome ${result.user.email}`,classes:"green"})
+		toast.success(`${result.user.email} your a/c created successfully`,{position:"top-right"});
+
+		// setTimeout(()=>navigate('/'),3000)
+
 		}catch(err){
-			console.log(err)
+			// console.log(err)
 			// window.M.toast({html:err.message,classes:"green"})
+			toast.error(err.message,{position:"top-right"});
 		}
    }
   return (
@@ -40,7 +71,7 @@ const slidOff=()=>{
 
 <Container className={`containerr ${slide ?`right-panel-active`:``}`} id="container">
 	<div className="form-container sign-up-container">
-		<form className='bg-[#ffffff] d-flex flex-column justify-center items-center px-[50px] h-100 text-center' action="#">
+		<form onSubmit={(e)=>handleSubmit(e)} className='bg-[#ffffff] d-flex flex-column justify-center items-center px-[50px] h-100 text-center' action="#">
 			<h1 className="font-bold text-3xl">Create Account</h1>
 			<div className="social-container">
 				<Link to='' className="social text-[#333] text-[14px] my-[15px]"><FaFacebookF/></Link>
@@ -48,15 +79,15 @@ const slidOff=()=>{
 				<Link to='' className="social text-[#333] text-[14px] my-[15px]"><FaLinkedinIn/></Link>
 			</div>
 			<span className="text-[12px]">or use your email for registration</span>
-			<input className='bg-[#eee] border-0 py-[12px] px-[15px] my-[8px] mx-0 w-100 ' type="text" placeholder="Name" />
-			<input className='bg-[#eee] border-0 py-[12px] px-[15px] my-[8px] mx-0 w-100 ' type="email" placeholder="Email" />
-			<input className='bg-[#eee] border-0 py-[12px] px-[15px] my-[8px] mx-0 w-100 ' type="password" placeholder="Password" />
-			<input className='bg-[#eee] border-0 py-[12px] px-[15px] my-[8px] mx-0 w-100 ' type="password" placeholder="Confirm Password" />
+			{/* <input className='bg-[#eee] border-0 py-[12px] px-[15px] my-[8px] mx-0 w-100 ' type="text" placeholder="Name" onChange={(e)=>setName(e.target.value)}/> */}
+			<input className='bg-[#eee] border-0 py-[12px] px-[15px] my-[8px] mx-0 w-100 ' type="email" value={email} placeholder="Email" onChange={(e)=>setEmail(e.target.value)}/>
+			<input className='bg-[#eee] border-0 py-[12px] px-[15px] my-[8px] mx-0 w-100 ' type="password" value={password} placeholder="Password" onChange={(e)=>setPassword(e.target.value)}/>
+			{/* <input className='bg-[#eee] border-0 py-[12px] px-[15px] my-[8px] mx-0 w-100 ' type="password" placeholder="Confirm Password" onChange={(e)=>setCpassword(e.target.value)}/> */}
 			<button className='ghost'>Sign Up</button>
 		</form>
 	</div>
 	<div className="form-container sign-in-container">
-		<form onSubmit={(e)=>handleSubmit(e)} className='bg-[#ffffff] d-flex flex-column justify-center items-center px-[50px] h-100 text-center' action="#">
+		<form onSubmit={(e)=>handleLogin(e)} className='bg-[#ffffff] d-flex flex-column justify-center items-center px-[50px] h-100 text-center' action="#">
 			<h1 className="font-bold text-3xl">Sign in</h1>
 			<div className="social-container">
                 <Link to='' className="social text-[#333] text-[14px] my-[15px]"><FaFacebookF/></Link>
@@ -64,8 +95,8 @@ const slidOff=()=>{
 				<Link to='' className="social text-[#333] text-[14px] my-[15px]"><FaLinkedinIn/></Link>
 			</div>
 			<span className="text-[12px]">or use your account</span>
-			<input className='bg-[#eee] border-0 py-[12px] px-[15px] my-[8px] mx-0 w-100 ' type="email" placeholder="Email" onChange={(e)=>setEmail(e.target.value)} />
-			<input className='bg-[#eee] border-0 py-[12px] px-[15px] my-[8px] mx-0 w-100 ' type="password" placeholder="Password" onChange={(e)=>setPassword(e.target.value)} />
+			<input className='bg-[#eee] border-0 py-[12px] px-[15px] my-[8px] mx-0 w-100 ' type="email" value={email} placeholder="Email" onChange={(e)=>setEmail(e.target.value)} />
+			<input className='bg-[#eee] border-0 py-[12px] px-[15px] my-[8px] mx-0 w-100 ' type="password" value={password} placeholder="Password" onChange={(e)=>setPassword(e.target.value)} />
 			<Link to='' className='text-[#333] text-[14px] my-[15px]'>Forgot your password?</Link>
 			<button type='submit' className="ghost">Sign In</button>
 		</form>
@@ -87,6 +118,7 @@ const slidOff=()=>{
 </Container>
 
 </div>    
+<ToastContainer/>
 </>
   )
 }

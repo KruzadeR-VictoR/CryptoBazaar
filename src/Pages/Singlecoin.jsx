@@ -15,7 +15,7 @@ import {
   FaRegHeart,
 } from "react-icons/fa";
 
-function Singlecoin() {
+function Singlecoin({user}) {
   const { id } = useParams();
   const [coin, setCoin] = useState({});
   const getCoinData = async () => {
@@ -31,9 +31,18 @@ function Singlecoin() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
   // console.log(coins.name); 
+
+  const [amount,setLAmount]=useState()
+  const handleCalculation=(e)=>{
+    console.log('hello')
+    // setLAmount(e.target.value);
+    // const res=
+    setLAmount((coin.market_data.current_price.inr)*(e.target.value));
+  }
+
   return (
     <>
-      <Navbar />
+      <Navbar user={user}/>
       <div className="bg-[#1F3736] text-white flex flex-column items-center text-2xl font-montserrat tracking-wide py-md-3">
         {coin.symbol?.toUpperCase()} Price{" "}
         <span className="text-sm text-gray-300">All about {coin.name}</span>
@@ -100,7 +109,7 @@ function Singlecoin() {
                 <input
                   type="text"
                   className="bg-[#1B4D4A] w-100 px-md-3 text-white"
-                  placeholder="Enter amount"
+                  placeholder="Enter amount" onChange={(e)=>handleCalculation(e)}
                 />
               </div>
               <AiOutlineSwap color="#00D2C6" />
@@ -111,7 +120,7 @@ function Singlecoin() {
                 <input
                   type="text"
                   className="bg-[#1B4D4A] w-100 px-md-3 text-white"
-                  placeholder="Enter amount"
+                  placeholder="Enter amount" value={amount ? amount : ''}
                 />
               </div>
             </div>

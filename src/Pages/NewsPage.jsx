@@ -8,7 +8,10 @@ import Footer from './Footer'
 import { Link } from 'react-router-dom'
 
 
-function NewsPage() {  
+function NewsPage({user}) {  
+
+    const [page,setPage]=useState(1)
+
   useEffect(()=>{
     getdata()
   })
@@ -23,7 +26,7 @@ function NewsPage() {
 }
   return (<>
       <NewsWrap>
-        <Navbar/>
+        <Navbar user={user}/>
     {/* <div>News</div> */}
     <h5 className='text-center text-3xl font-fredericka tracking-widest pt-md-5'>NEWS AND EVENTS</h5>
     <p className='text-center w-75 text-muted font-montserrat leading-7 mx-auto p-4'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil iure odit architecto placeat deserunt repellendus at facilis cumque minus tempora dolores illum, fugit ipsam veniam commodi dolorum. Reprehenderit, a numquam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem officiis in adipisci molestiae quae! Pariatur accusantium quis iusto cupiditate, provident iste quam nam veritatis praesentium.</p>
@@ -44,7 +47,7 @@ function NewsPage() {
     </NewsHead>
     <NewsStack className='d-flex justify-center pt-md-5'>
         <div>
-    {allnews.slice(3,13).map((news,index)=>(
+    {allnews.slice((page-1)*10,(page-1)*10+15).map((news,index)=>(
         <div className='d-flex gap-x-5 my-md-3 bg-slate-100 p-2 py-3 rounded-md cursor-pointer' onClick={()=>{window.open(`http://${news.domain}/${news.slug}`)}}>
             <Image src={image} alt="" />
             <div>
@@ -58,11 +61,11 @@ function NewsPage() {
     </NewsStack> 
     <Pagination className='d-flex justify-center py-5'>
   <ul className="pagination">
-    <li className="page-item"><Link to="/news/prev" class="page-link">Previous</Link></li>
-    <li className="page-item active"><Link to="/news/1" class="page-link">1</Link></li>
-    <li className="page-item"><Link to="/news/2" class="page-link">2</Link></li>
-    <li className="page-item"><Link to="/news/3" class="page-link">3</Link></li>
-    <li className="page-item"><Link to="/news/next" class="page-link">Next</Link></li>
+    <li className="page-item"><Link to="" class="page-link">Previous</Link></li>
+    <li className="page-item"><Link to="" class="page-link" onClick={()=>setPage(1)}>1</Link></li>
+    <li className="page-item"><Link to="" class="page-link" onClick={()=>{setPage(2)}}>2</Link></li>
+    <li className="page-item"><Link to="" class="page-link" onClick={()=>setPage(3)}>3</Link></li>
+    <li className="page-item"><Link to="" class="page-link">Next</Link></li>
   </ul>
 </Pagination>
 <Footer/>         

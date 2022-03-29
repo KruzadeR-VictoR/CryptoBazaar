@@ -3,8 +3,9 @@ import logo from "../images/logo.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { FaUserAlt } from "react-icons/fa";
+import { auth } from "../firebase";
 
-function Navbar({ title }) {
+function Navbar({ title,user }) {
   const navigate = useNavigate();
   return (
     <>
@@ -52,6 +53,7 @@ function Navbar({ title }) {
                   Coins
                 </NavLink>
               </li>
+              {user ? <>
               <li className="nav-item">
                 <NavLink to="/Portfolio" className="nav-link">
                   Portfolio
@@ -67,6 +69,8 @@ function Navbar({ title }) {
                   Transactions
                 </NavLink>
               </li>
+              </> : ''
+              }
               <li className="nav-item">
                 <NavLink to="/News" className="nav-link">
                   News
@@ -115,13 +119,23 @@ function Navbar({ title }) {
               {/* <button className="btn btn-outline-primary" type="submit">Search</button> */}
             </form>
             <div className="ms-md-5 pt-4 pt-md-0 rounded-lg overflow-hidden">
+              {user ? <>
               <button
                 className="btn btn-primary  d-flex items-center gap-x-2 px-md-3 font-montserrat tracking-wider text-white"
-                onClick={() => navigate("/Login")}
+                onClick={() =>auth.signOut()}
               >
-                <FaUserAlt color="white" />
-                Login
+                <FaUserAlt color="white" />   
+                Logout             
               </button>
+              </> :
+              <button
+              className="btn btn-primary  d-flex items-center gap-x-2 px-md-3 font-montserrat tracking-wider text-white"
+              onClick={() => navigate("/Login")}
+            >
+              <FaUserAlt color="white" />   
+              Login             
+            </button>
+              }
             </div>
           </div>
         </div>
