@@ -3,6 +3,7 @@ import '../Styles/login.css'
 import Navbar from './Navbar'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { auth } from '../firebase'
 
 import {FaFacebookF, FaGoogle, FaLinkedinIn} from 'react-icons/fa'
 
@@ -18,6 +19,19 @@ const slidOff=()=>{
 		setSlide(false)
 }
 
+   const [email,setEmail]=useState('')
+   const [password,setPassword]=useState('')
+   const handleSubmit= async(e)=>{
+		e.preventDefault();
+		console.log(email,password);
+		try{
+		const result=await auth.createUserWithEmailAndPassword(email,password)
+		// window.M.toast({html: `Welcome ${result.user.email}`,classes:"green"})
+		}catch(err){
+			console.log(err)
+			// window.M.toast({html:err.message,classes:"green"})
+		}
+   }
   return (
       <>
     {/* <div>Login</div> */}
@@ -37,11 +51,12 @@ const slidOff=()=>{
 			<input className='bg-[#eee] border-0 py-[12px] px-[15px] my-[8px] mx-0 w-100 ' type="text" placeholder="Name" />
 			<input className='bg-[#eee] border-0 py-[12px] px-[15px] my-[8px] mx-0 w-100 ' type="email" placeholder="Email" />
 			<input className='bg-[#eee] border-0 py-[12px] px-[15px] my-[8px] mx-0 w-100 ' type="password" placeholder="Password" />
+			<input className='bg-[#eee] border-0 py-[12px] px-[15px] my-[8px] mx-0 w-100 ' type="password" placeholder="Confirm Password" />
 			<button className='ghost'>Sign Up</button>
 		</form>
 	</div>
 	<div className="form-container sign-in-container">
-		<form className='bg-[#ffffff] d-flex flex-column justify-center items-center px-[50px] h-100 text-center' action="#">
+		<form onSubmit={(e)=>handleSubmit(e)} className='bg-[#ffffff] d-flex flex-column justify-center items-center px-[50px] h-100 text-center' action="#">
 			<h1 className="font-bold text-3xl">Sign in</h1>
 			<div className="social-container">
                 <Link to='' className="social text-[#333] text-[14px] my-[15px]"><FaFacebookF/></Link>
@@ -49,10 +64,10 @@ const slidOff=()=>{
 				<Link to='' className="social text-[#333] text-[14px] my-[15px]"><FaLinkedinIn/></Link>
 			</div>
 			<span className="text-[12px]">or use your account</span>
-			<input className='bg-[#eee] border-0 py-[12px] px-[15px] my-[8px] mx-0 w-100 ' type="email" placeholder="Email" />
-			<input className='bg-[#eee] border-0 py-[12px] px-[15px] my-[8px] mx-0 w-100 ' type="password" placeholder="Password" />
+			<input className='bg-[#eee] border-0 py-[12px] px-[15px] my-[8px] mx-0 w-100 ' type="email" placeholder="Email" onChange={(e)=>setEmail(e.target.value)} />
+			<input className='bg-[#eee] border-0 py-[12px] px-[15px] my-[8px] mx-0 w-100 ' type="password" placeholder="Password" onChange={(e)=>setPassword(e.target.value)} />
 			<Link to='' className='text-[#333] text-[14px] my-[15px]'>Forgot your password?</Link>
-			<button className="ghost">Sign In</button>
+			<button type='submit' className="ghost">Sign In</button>
 		</form>
 	</div>
 	<div className="overlay-container">
