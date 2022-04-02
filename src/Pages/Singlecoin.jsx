@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import styled from "styled-components";
 import { AiOutlineSwap } from "react-icons/ai";
 import { MdGroups } from "react-icons/md";
+import CoinChart from "../Components/CoinChart";
 import {
   FaTwitter,
   FaFacebook,
@@ -15,7 +16,7 @@ import {
   FaRegHeart,
 } from "react-icons/fa";
 
-function Singlecoin({user}) {
+function Singlecoin({ user }) {
   const { id } = useParams();
   const [coin, setCoin] = useState({});
   const getCoinData = async () => {
@@ -27,22 +28,22 @@ function Singlecoin({user}) {
     setCoin(data);
   };
   useEffect(() => {
-    getCoinData();    
+    getCoinData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
-  // console.log(coins.name); 
+  // console.log(coins.name);
 
-  const [amount,setLAmount]=useState()
-  const handleCalculation=(e)=>{
-    console.log('hello')
+  const [amount, setLAmount] = useState();
+  const handleCalculation = (e) => {
+    console.log("hello");
     // setLAmount(e.target.value);
     // const res=
-    setLAmount((coin.market_data.current_price.inr)*(e.target.value));
-  }
+    setLAmount(coin.market_data.current_price.inr * e.target.value);
+  };
 
   return (
     <>
-      <Navbar user={user}/>
+      <Navbar user={user} />
       <div className="bg-[#1F3736] text-white flex flex-column items-center text-2xl font-montserrat tracking-wide py-md-3">
         {coin.symbol?.toUpperCase()} Price{" "}
         <span className="text-sm text-gray-300">All about {coin.name}</span>
@@ -109,7 +110,8 @@ function Singlecoin({user}) {
                 <input
                   type="text"
                   className="bg-[#1B4D4A] w-100 px-md-3 text-white"
-                  placeholder="Enter amount" onChange={(e)=>handleCalculation(e)}
+                  placeholder="Enter amount"
+                  onChange={(e) => handleCalculation(e)}
                 />
               </div>
               <AiOutlineSwap color="#00D2C6" />
@@ -120,7 +122,8 @@ function Singlecoin({user}) {
                 <input
                   type="text"
                   className="bg-[#1B4D4A] w-100 px-md-3 text-white"
-                  placeholder="Enter amount" value={amount ? amount : ''}
+                  placeholder="Enter amount"
+                  value={amount ? amount : ""}
                 />
               </div>
             </div>
@@ -425,9 +428,11 @@ function Singlecoin({user}) {
           </div>
         </div>
         <hr className="bg-black" />
+        {/* coins chart */}    
+        <CoinChart Scoin={coin.symbol?.toUpperCase()}/>    
         {/* Exchange Markets */}
         <div className="container py-md-4">
-          <h1 className="text-2xl text-white">BTC Markets</h1>
+          <h1 className="text-2xl text-white">{coin.symbol?.toUpperCase()} Markets</h1>
           <span className="text-[#3cd6cc]">Report a missing market</span>
           <div className="d-flex justify-center pt-md-3 mt-md-4">
             <table className="table text-center">
@@ -448,7 +453,12 @@ function Singlecoin({user}) {
                   <td>{coin.symbol?.toUpperCase()}/USDT</td>
                   <td>Binance</td>
                   <td>$ {coin.market_data?.current_price.usd}</td>
-                  <td>{coin.market_data?.market_cap_change_percentage_24h.toFixed(2)} %</td>
+                  <td>
+                    {coin.market_data?.market_cap_change_percentage_24h.toFixed(
+                      2
+                    )}{" "}
+                    %
+                  </td>
                   <td>$39.72 M</td>
                   <td>
                     <button
@@ -468,7 +478,12 @@ function Singlecoin({user}) {
                   <td>{coin.symbol?.toUpperCase()}/USDT</td>
                   <td>KuCoin</td>
                   <td>$ {coin.market_data?.current_price.usd}</td>
-                  <td>{coin.market_data?.market_cap_change_percentage_24h.toFixed(2)} %</td>
+                  <td>
+                    {coin.market_data?.market_cap_change_percentage_24h.toFixed(
+                      2
+                    )}{" "}
+                    %
+                  </td>
                   <td>$39.72 M</td>
                   <td>
                     <button
@@ -488,7 +503,12 @@ function Singlecoin({user}) {
                   <td>{coin.symbol?.toUpperCase()}/USDT</td>
                   <td>FTXUS</td>
                   <td>$ {coin.market_data?.current_price.usd}</td>
-                  <td>{coin.market_data?.market_cap_change_percentage_24h.toFixed(2)} %</td>
+                  <td>
+                    {coin.market_data?.market_cap_change_percentage_24h.toFixed(
+                      2
+                    )}{" "}
+                    %
+                  </td>
                   <td>$39.72 M</td>
                   <td>
                     <button
@@ -508,7 +528,12 @@ function Singlecoin({user}) {
                   <td>{coin.symbol?.toUpperCase()}/USDT</td>
                   <td>WazirX</td>
                   <td>$ {coin.market_data?.current_price.usd}</td>
-                  <td>{coin.market_data?.market_cap_change_percentage_24h.toFixed(2)} %</td>
+                  <td>
+                    {coin.market_data?.market_cap_change_percentage_24h.toFixed(
+                      2
+                    )}{" "}
+                    %
+                  </td>
                   <td>$39.72 M</td>
                   <td>
                     <button

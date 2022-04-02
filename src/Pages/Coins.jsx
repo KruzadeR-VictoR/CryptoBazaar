@@ -37,7 +37,7 @@ function Coins({user}) {
   return (
       <>
     {/* <div>Coins</div> */}
-    <Navbar user={user}/>
+    <Navbar user={user}/>        
     <Coin className='d-flex flex-column justify-content-center pt-md-5'>    
     <div className='px-md-5'>
     <h1 className='text-center text-3xl font-fredericka tracking-widest pt-md-5'>Coins</h1>    
