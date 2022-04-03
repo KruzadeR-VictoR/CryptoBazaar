@@ -33,14 +33,26 @@ function Singlecoin({ user }) {
   }, [id]);
   // console.log(coins.name);
 
-  const [amount, setLAmount] = useState();
-  const handleCalculation = (e) => {
-    console.log("hello");
-    // setLAmount(e.target.value);
-    // const res=
-    setLAmount(coin.market_data.current_price.inr * e.target.value);
-  };
-
+  const [amount, setLAmount] = useState(1);
+  const [amountInFromCurrency,setAmountInFromCurrency]=useState(true)
+  let toAmount,fromAmount
+ if(amountInFromCurrency){
+   fromAmount=amount
+   toAmount=(coin.market_data?.current_price.inr * amount)
+ }
+ else{
+   toAmount=amount
+   fromAmount=(amount / coin.market_data?.current_price.inr)
+ }
+  // const [initialAmt,setInitialAmt]=useState()
+  const handleFromChange = (e) => {    
+    setLAmount(e.target.value);    
+    setAmountInFromCurrency(true)
+  }; 
+  const handleToChange = (e) => {    
+    setLAmount(e.target.value);    
+    setAmountInFromCurrency(false)
+  }; 
   return (
     <>
       <Navbar user={user} />
@@ -111,7 +123,8 @@ function Singlecoin({ user }) {
                   type="text"
                   className="bg-[#1B4D4A] w-100 px-md-3 text-white"
                   placeholder="Enter amount"
-                  onChange={(e) => handleCalculation(e)}
+                  value={fromAmount}
+                  onChange={(e) => handleFromChange(e)}
                 />
               </div>
               <AiOutlineSwap color="#00D2C6" />
@@ -122,8 +135,9 @@ function Singlecoin({ user }) {
                 <input
                   type="text"
                   className="bg-[#1B4D4A] w-100 px-md-3 text-white"
-                  placeholder="Enter amount"
-                  value={amount ? amount : ""}
+                  placeholder="Enter amount" 
+                  value={toAmount}                 
+                  onChange={(e)=>handleToChange(e)}                  
                 />
               </div>
             </div>
