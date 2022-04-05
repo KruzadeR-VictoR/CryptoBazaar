@@ -5,6 +5,8 @@ import styled from 'styled-components'
 import {FaEyeSlash,FaEye,FaChevronDown,FaPlus,FaAngleLeft} from 'react-icons/fa'
 import { AiFillSetting } from "react-icons/ai";
 import { SiMicrosoftexcel } from "react-icons/si";
+import ReactHTMLTableToExcel from 'react-html-table-to-excel'
+import AddCoinModal from '../Components/AddCoinModal'
 
 
 function Portfolio({user}) {
@@ -47,6 +49,7 @@ const getCoins=async ()=>{
   return (
       <>
     <Navbar user={user}/>
+    <AddCoinModal/>
     {/* <div className='grid place-items-center h-[100vh] text-3xl font-bold'>Portfolio</div> */}
     <Port className=' bg-[#1F3736] font-montserrat py-md-5'>
       <Header className='text-white d-flex justify-around items-center pb-md-2'>
@@ -97,12 +100,20 @@ const getCoins=async ()=>{
       <h1 className='text-white text-xl px-md-5 py-md-5 tracking-wider'>Holdings</h1>
       <div className='d-flex justify-between px-md-5'>
         <button className='btn bg-[#375554] px-md-3 text-white d-flex items-center gap-x-2'><AiFillSetting/>Customize</button>
-        <button className='btn bg-[#375554] px-md-3 text-white d-flex items-center gap-x-2'><SiMicrosoftexcel/>Export CSV</button>
+        <button className='btn bg-[#375554] px-md-3 text-white d-flex items-center gap-x-2'><SiMicrosoftexcel/>
+        <ReactHTMLTableToExcel
+                    id="test-table-xls-button"
+                    className="download-table-xls-button"
+                    table="table-to-xls"
+                    filename="tablexls"
+                    sheet="tablexls"
+                    buttonText="Export as CSV"/>
+                    </button>        
       </div>
 
   {/* Coins */}
-  <div className="data table-responsive-md px-md-5">
-        <table style={{backgroundColor:"rgba(31, 92, 89, 0.1)"}} className="table table-borderless table-hover text-white container my-md-5"> 
+  <div className="data table-responsive-md px-md-5">  
+        <table id='table-to-xls' style={{backgroundColor:"rgba(31, 92, 89, 0.1)"}} className="table table-borderless table-hover text-white container my-md-5"> 
             <thead className='table-light'>
                 <tr>
                 <th className="col">#</th>
