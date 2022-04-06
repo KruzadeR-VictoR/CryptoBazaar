@@ -5,6 +5,7 @@ import styled from "styled-components";
 import {
   FaEyeSlash,
   FaEye,
+  // eslint-disable-next-line no-unused-vars
   FaChevronDown,
   FaPlus,
   FaAngleLeft,
@@ -13,6 +14,7 @@ import { AiFillSetting } from "react-icons/ai";
 import { SiMicrosoftexcel } from "react-icons/si";
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import AddCoinModal from "../Components/AddCoinModal";
+import CustomizeCoinsPortfolio from "../Components/CustomizeCoinsPortfolio";
 
 function Portfolio({ user }) {
   // to tpggle the eye button
@@ -53,13 +55,24 @@ function Portfolio({ user }) {
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => {
-    setShowModal(prev=>!prev)
+    setShowModal((prev) => !prev);
+  };
+
+  // Add Customize coins
+
+  const [showCustomize, setShowCustomize] = useState(true);
+  const openCustomize = () => {
+    setShowCustomize((prev) => !prev);
   };
 
   return (
     <>
       <Navbar user={user} />
       <AddCoinModal showModal={showModal} setShowModal={setShowModal} />
+      <CustomizeCoinsPortfolio
+        showCustomize={showCustomize}
+        setShowCustomize={setShowCustomize}
+      />
       {/* <div className='grid place-items-center h-[100vh] text-3xl font-bold'>Portfolio</div> */}
       <Port className=" bg-[#1F3736] font-montserrat py-md-5">
         <Header className="text-white d-flex justify-around items-center pb-md-2">
@@ -74,10 +87,27 @@ function Portfolio({ user }) {
             >
               {isClicked ? <FaEyeSlash /> : <FaEye />}
             </button>
-            <button className="btn bg-[#375554] px-md-3 text-white d-flex items-center gap-x-2">
-              Switch Portfolio
-              <FaChevronDown />
-            </button>
+            <div className="dropdown">
+              <button
+                id="SwitchPortfolio"
+                className="dropdown-toggle btn bg-[#375554] px-md-3 text-white d-flex items-center gap-x-2"
+                data-bs-toggle="dropdown"
+              >
+                Switch Portfolio
+                {/* <FaChevronDown /> */}
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li className="dropdown-item">                  
+                    Mrutyunjay                  
+                </li>
+                <li className="dropdown-item">                  
+                    User-Test                  
+                </li>
+                <li className="dropdown-item">                  
+                    Arup                  
+                </li>
+              </ul>
+            </div>
             <button className="btn bg-[#04A79D] d-flex items-center gap-x-2">
               <FaPlus />
               New Portfolio
@@ -141,7 +171,11 @@ function Portfolio({ user }) {
             Add a Coin
           </button>
           <button className="btn bg-[#375554] d-flex items-center  gap-x-2 text-white">
-            Redo <FaAngleLeft style={{ transform: "rotate(180deg)" }} />
+            Redo{" "}
+            <FaAngleLeft
+              className="z-0"
+              style={{ transform: "rotate(180deg)" }}
+            />
           </button>
           <span className="h-[1px] w-[100%] bg-[#0000007A] "></span>
         </div>
@@ -149,7 +183,10 @@ function Portfolio({ user }) {
           Holdings
         </h1>
         <div className="d-flex justify-between px-md-5">
-          <button className="btn bg-[#375554] px-md-3 text-white d-flex items-center gap-x-2">
+          <button
+            className="btn bg-[#375554] px-md-3 text-white d-flex items-center gap-x-2"
+            onClick={openCustomize}
+          >
             <AiFillSetting />
             Customize
           </button>
@@ -161,7 +198,7 @@ function Portfolio({ user }) {
               table="table-to-xls"
               filename="tablexls"
               sheet="tablexls"
-              buttonText="Export as CSV"
+              buttonText="Export CSV"
             />
           </button>
         </div>
