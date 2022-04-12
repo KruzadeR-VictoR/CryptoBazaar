@@ -13,3 +13,9 @@ Coins{
         #Fix pagination bg color
 
 }
+
+NewsPage{
+
+        #ln-54 : change the comparison value
+
+}

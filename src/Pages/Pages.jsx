@@ -26,7 +26,7 @@ function Pages() {
       <Route path="/" element={<Home user={user} />} exact />
       <Route path="/Coins" element={<Coins user={user} />} />
       <Route path="/Portfolio" element={<Portfolio user={user} />} />
-      <Route path="/PricePrediction" element={<PricePrediction />} />
+      <Route path="/PricePrediction" element={<PricePrediction user={user} />} />
       <Route path="/News" element={<NewsPage user={user} />} />
       <Route path="/Transactions" element={<Transact user={user}/>} />
       <Route path="/Forum" element={<Forum />} />

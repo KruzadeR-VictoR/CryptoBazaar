@@ -14,9 +14,9 @@ function NewsPage({user}) {
 
   useEffect(()=>{
     getdata()
-  })
+  },[])
   const [allnews,setAllnews]=useState([])
-  const base_URL="https://cryptopanic.com/api/v1/posts/?auth_token=828801dba8f9036c6d132ef25583b8f1b0e9592e&public=true"    
+  const base_URL="https://cryptopanic.com/api/v1/posts/?auth_token=828801dba8f9036c6d132ef25583b8f1b0e9592e&public=true&kind=news"    
   const getdata=async ()=>{
     const call=await fetch(`${base_URL}`)
     const res= await call.json()
@@ -24,6 +24,8 @@ function NewsPage({user}) {
     console.log(news_data);
     setAllnews(news_data)
 }
+
+
   return (<>
       <NewsWrap>
         <Navbar user={user}/>
@@ -33,7 +35,7 @@ function NewsPage({user}) {
     <NewsHead className='d-flex justify-center gap-x-10 pt-md-5'>
     {allnews.slice(0,3).map((news)=>(        
         <>            
-            <div className='card cursor-pointer rounded-md overflow-hidden' style={{width:"18rem"}} onClick={()=>{window.open(`http://${news.domain}/${news.slug}`)}}>
+            <div key={news.id} className='card cursor-pointer rounded-md overflow-hidden' style={{width:"18rem"}} onClick={()=>{window.open(`http://${news.domain}/${news.slug}`)}}>
                 <img src={image} alt="" />
                 <div className='card-body'>
                     <h5 className='card-title'>{news.title}</h5>
@@ -48,7 +50,10 @@ function NewsPage({user}) {
     <NewsStack className='d-flex justify-center pt-md-5'>
         <div>
     {allnews.slice((page-1)*10,(page-1)*10+15).map((news,index)=>(
-        <div className='d-flex gap-x-5 my-md-3 bg-slate-100 p-2 py-3 rounded-md cursor-pointer' onClick={()=>{window.open(`http://${news.domain}/${news.slug}`)}}>
+        <div key={news.id} className='d-flex gap-x-5 my-md-3 bg-slate-100 p-2 py-3 rounded-md cursor-pointer' onClick={()=>{
+            /* Change the domain comparison value accordingly as u want it */
+             `${news.domain}`==='cointelegraph.com' ? window.open(`http://${news.domain}/news/${news.slug}`) : window.open(`http://${news.domain}/${news.slug}`)}            
+        }>
             <Image src={image} alt="" />
             <div>
                 <h5 className='font-bold'>{news.title}</h5>
@@ -61,11 +66,11 @@ function NewsPage({user}) {
     </NewsStack> 
     <Pagination className='d-flex justify-center py-5'>
   <ul className="pagination">
-    <li className="page-item"><Link to="" class="page-link">Previous</Link></li>
-    <li className="page-item"><Link to="" class="page-link" onClick={()=>setPage(1)}>1</Link></li>
-    <li className="page-item"><Link to="" class="page-link" onClick={()=>{setPage(2)}}>2</Link></li>
-    <li className="page-item"><Link to="" class="page-link" onClick={()=>setPage(3)}>3</Link></li>
-    <li className="page-item"><Link to="" class="page-link">Next</Link></li>
+    <li className="page-item"><Link to="" className="page-link">Previous</Link></li>
+    <li className="page-item"><Link to="" className="page-link" onClick={()=>setPage(1)}>1</Link></li>
+    <li className="page-item"><Link to="" className="page-link" onClick={()=>{setPage(2)}}>2</Link></li>
+    <li className="page-item"><Link to="" className="page-link" onClick={()=>setPage(3)}>3</Link></li>
+    <li className="page-item"><Link to="" className="page-link">Next</Link></li>
   </ul>
 </Pagination>
 <Footer/>         

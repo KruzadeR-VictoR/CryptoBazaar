@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { FaUserAlt } from "react-icons/fa";
 import { auth } from "../firebase";
 
-function Navbar({ title,user }) {
+function Navbar({ title, user }) {
   const navigate = useNavigate();
   return (
     <>
@@ -41,7 +41,10 @@ function Navbar({ title,user }) {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse whitespace-nowrap" id="navbarSupportedContent">
+          <div
+            className="collapse navbar-collapse whitespace-nowrap"
+            id="navbarSupportedContent"
+          >
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <NavLink to="/" className="nav-link" aria-current="page">
@@ -53,24 +56,31 @@ function Navbar({ title,user }) {
                   Coins
                 </NavLink>
               </li>
-              {user ? <>
-              <li className="nav-item">
-                <NavLink to="/Portfolio" className="nav-link">
-                  Portfolio
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to="/PricePrediction" className="nav-link">
-                  Price Prediction
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to="/Transactions" className="nav-link">
-                  Transactions
-                </NavLink>
-              </li>
-              </> : ''
-              }
+              {user ? (
+                <>
+                  <li className="nav-item">
+                    <NavLink to="/Portfolio" className="nav-link">
+                      Portfolio
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink
+                      to=""
+                      className="nav-link"
+                      onClick={() => window.open("http://localhost:8501")}
+                    >
+                      Price Prediction
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink to="/Transactions" className="nav-link">
+                      Transactions
+                    </NavLink>
+                  </li>
+                </>
+              ) : (
+                ""
+              )}
               <li className="nav-item">
                 <NavLink to="/News" className="nav-link">
                   News
@@ -95,7 +105,7 @@ function Navbar({ title,user }) {
                   </li>
                   <li>
                     <NavLink to="/" className="dropdown-item">
-                      Another action
+                      Compare
                     </NavLink>
                   </li>
                   <li>
@@ -103,7 +113,7 @@ function Navbar({ title,user }) {
                   </li>
                   <li>
                     <NavLink to="/" className="dropdown-item">
-                      Something else here
+                      Publications
                     </NavLink>
                   </li>
                 </ul>
@@ -119,23 +129,25 @@ function Navbar({ title,user }) {
               {/* <button className="btn btn-outline-primary" type="submit">Search</button> */}
             </form>
             <div className="ms-md-5 pt-4 pt-md-0 rounded-lg overflow-hidden">
-              {user ? <>
-              <button
-                className="btn btn-primary  d-flex items-center gap-x-2 px-md-3 font-montserrat tracking-wider text-white"
-                onClick={() =>auth.signOut()}
-              >
-                <FaUserAlt color="white" />   
-                Logout             
-              </button>
-              </> :
-              <button
-              className="btn btn-primary  d-flex items-center gap-x-2 px-md-3 font-montserrat tracking-wider text-white"
-              onClick={() => navigate("/Login")}
-            >
-              <FaUserAlt color="white" />   
-              Login             
-            </button>
-              }
+              {user ? (
+                <>
+                  <button
+                    className="btn btn-primary  d-flex items-center gap-x-2 px-md-3 font-montserrat tracking-wider text-white"
+                    onClick={() => auth.signOut()}
+                  >
+                    <FaUserAlt color="white" />
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <button
+                  className="btn btn-primary  d-flex items-center gap-x-2 px-md-3 font-montserrat tracking-wider text-white"
+                  onClick={() => navigate("/Login")}
+                >
+                  <FaUserAlt color="white" />
+                  Login
+                </button>
+              )}
             </div>
           </div>
         </div>

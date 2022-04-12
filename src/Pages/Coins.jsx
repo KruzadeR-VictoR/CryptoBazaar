@@ -4,6 +4,7 @@ import { Link,useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import Navbar from '../Components/Navbar'
 import Footer from './Footer'
+import Trend from 'react-trend'
 
 function Coins({user}) {
   const navigate=useNavigate()   
@@ -66,7 +67,21 @@ function Coins({user}) {
                         <td style={tD}>{coin.market_data.market_cap.inr}</td>  
                         <td style={tD}>{coin.market_data.price_change_24h}</td>                      
                         <td style={tD}>{coin.market_data.circulating_supply}</td>
-                        <td style={tD}>Chart</td>
+                        <td style={tD} className='w-[200px]'><Trend
+                            smooth
+                            autoDraw
+                            autoDrawDuration={3000}
+                            autoDrawEasing="ease-out"
+                            data={
+                              coin.market_data.market_cap_rank % 2 === 0
+                                ? [0, 2, 5, 9, 5, 10, 3, 5, 0, 9, 6, 8, 2, 9, 0]
+                                : [9, 8, 5, 9, 5, 10, 3, 5, 0, 0, 1, 8, 1, 2, 0]
+                            }
+                            gradient={["green", "lime", "yellow"]}
+                            radius={10}
+                            strokeWidth={2}
+                            strokeLinecap={"butt"}
+                          /></td>
                     </Row>                  
             ))}            
             </tbody>

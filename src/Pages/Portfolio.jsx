@@ -15,13 +15,22 @@ import { SiMicrosoftexcel } from "react-icons/si";
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import AddCoinModal from "../Components/AddCoinModal";
 import CustomizeCoinsPortfolio from "../Components/CustomizeCoinsPortfolio";
+import Trend from "react-trend";
+import ConfirmPortDel from "../Components/ConfirmPortDel";
 
 function Portfolio({ user }) {
   // to tpggle the eye button
   const [isClicked, setIsClicked] = useState(false);
+  // set eyeButton functionality
+  const [showQuickData, setShowQuickData] = useState(true);
   const isVisible = () => {
-    if (isClicked) setIsClicked(false);
-    else setIsClicked(true);
+    if (isClicked) {
+      setIsClicked(false);
+      setShowQuickData(true);
+    } else {
+      setIsClicked(true);
+      setShowQuickData(false);
+    }
   };
 
   // fetch the coins
@@ -60,10 +69,34 @@ function Portfolio({ user }) {
 
   // Add Customize coins
 
-  const [showCustomize, setShowCustomize] = useState(true);
+  const [showCustomize, setShowCustomize] = useState(false);
   const openCustomize = () => {
     setShowCustomize((prev) => !prev);
   };
+
+  // set Price quantity
+  // eslint-disable-next-line no-unused-vars
+  let [Quantity, setQuantity] = useState(0);
+  //   // let adder=.009
+  //  useEffect(()=>{
+  //    let value=Quantity*3
+  //    setQuantity(value)
+  //  },[Quantity])
+  console.log(coins);
+
+  // delete Portfolio
+  const [showDelete, setShowDelete] = useState(false);
+
+  const openDelete = () => {
+    setShowDelete((prev) => !prev);
+    setShowPortFolio(false);
+  };
+// show Portfolio
+  const [showPortFolio, setShowPortFolio] = useState(true);
+
+  // toggle total value on quick Portfolio
+
+  const [TValue,setTValue]=useState('43,971.87')
 
   return (
     <>
@@ -96,16 +129,13 @@ function Portfolio({ user }) {
                 Switch Portfolio
                 {/* <FaChevronDown /> */}
               </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li className="dropdown-item">                  
-                    Mrutyunjay                  
-                </li>
-                <li className="dropdown-item">                  
-                    User-Test                  
-                </li>
-                <li className="dropdown-item">                  
-                    Arup                  
-                </li>
+              <ul
+                className="dropdown-menu"
+                aria-labelledby="dropdownMenuButton1"
+              >
+                <li className="dropdown-item" onClick={()=>setTValue('53,079.07')}>Mrutyunjay</li>
+                <li className="dropdown-item" onClick={()=>setTValue('18,400.21')}>User-Test</li>
+                <li className="dropdown-item" onClick={()=>setTValue('13,472.69')}>Arup</li>
               </ul>
             </div>
             <button className="btn bg-[#04A79D] d-flex items-center gap-x-2">
@@ -115,10 +145,16 @@ function Portfolio({ user }) {
           </div>
         </Header>
         <Quickport className="container bg-[#132524] rounded-bl-md text-white p-md-3 d-flex flex-column justify-center">
-          <h3 className="text-center text-sm text-gray-400">Total Value</h3>
-          <h1 className="text-center text-xl font-bold tracking-wider">
-            43,971.87
-          </h1>
+          {showQuickData ? (
+            <div>
+              <h3 className="text-center text-sm text-gray-400">
+                Total Value
+              </h3>
+              <h1 className="text-center text-xl font-bold tracking-wider">
+                {TValue}
+              </h1>
+            </div>
+          ) : null}
           <div className="mx-md-5 pt-md-3">
             <table className="table text-white table-borderless">
               <thead className="text-center text-gray-500">
@@ -135,22 +171,28 @@ function Portfolio({ user }) {
                 <tr>
                   {/* <th scope='row'>1</th> */}
                   <td>
-                    $1.08K <p>-14.41%</p>
+                    {showQuickData ? "$120 " : null}
+                    <p>-14.41%</p>
                   </td>
                   <td>
-                    $1.08K <p>14.41%</p>
+                    {showQuickData ? "-$480 " : null}
+                    <p>10.41%</p>
                   </td>
                   <td>
-                    $1.08K <p>14.41%</p>
+                    {showQuickData ? "$1.08K " : null}
+                    <p>12.41%</p>
                   </td>
                   <td>
-                    $1.08K <p>-14.41%</p>
+                    {showQuickData ? "$4.08K " : null}
+                    <p>-9.41%</p>
                   </td>
                   <td>
-                    $1.08K <p>14.41%</p>
+                    {showQuickData ? "-$2.30K " : null}
+                    <p>12.41%</p>
                   </td>
                   <td>
-                    $1.08K <p>-14.41%</p>
+                    {showQuickData ? "$10.48K " : null}
+                    <p>-9.41%</p>
                   </td>
                 </tr>
               </tbody>
@@ -179,72 +221,135 @@ function Portfolio({ user }) {
           </button>
           <span className="h-[1px] w-[100%] bg-[#0000007A] "></span>
         </div>
-        <h1 className="text-white text-xl px-md-5 py-md-5 tracking-wider">
-          Holdings
-        </h1>
-        <div className="d-flex justify-between px-md-5">
-          <button
-            className="btn bg-[#375554] px-md-3 text-white d-flex items-center gap-x-2"
-            onClick={openCustomize}
-          >
-            <AiFillSetting />
-            Customize
-          </button>
-          <button className="btn bg-[#375554] px-md-3 text-white d-flex items-center gap-x-2">
-            <SiMicrosoftexcel />
-            <ReactHTMLTableToExcel
-              id="test-table-xls-button"
-              className="download-table-xls-button"
-              table="table-to-xls"
-              filename="tablexls"
-              sheet="tablexls"
-              buttonText="Export CSV"
-            />
-          </button>
-        </div>
+        <Holdings className="relative">
+          <h1 className="text-white text-xl px-md-5 py-md-5 tracking-wider">
+            Holdings
+          </h1>
+          <div className="d-flex justify-between px-md-5">
+            <button
+              className="btn bg-[#375554] px-md-3 text-white d-flex items-center gap-x-2"
+              onClick={openCustomize}
+            >
+              <AiFillSetting />
+              Customize
+            </button>
+            <div className="btn bg-[#375554] px-md-3 text-white d-flex items-center gap-x-2">
+              <SiMicrosoftexcel />
+              <ReactHTMLTableToExcel
+                id="test-table-xls-button"
+                className="download-table-xls-button"
+                table="table-to-xls"
+                filename="tablexls"
+                sheet="tablexls"
+                buttonText="Export CSV"
+              />
+            </div>
+          </div>
 
-        {/* Coins */}
-        <div className="data table-responsive-md px-md-5">
-          <table
-            id="table-to-xls"
-            style={{ backgroundColor: "rgba(31, 92, 89, 0.1)" }}
-            className="table table-borderless table-hover text-white container my-md-5"
-          >
-            <thead className="table-light">
-              <tr>
-                <th className="col">#</th>
-                <th className="col">Name</th>
-                <th className="col">Price</th>
-                <th className="col">Market Cap</th>
-                <th className="col">24H</th>
-                <th className="col">Circulating Supply</th>
-                <th className="col">7D Chart</th>
-              </tr>
-            </thead>
-            <tbody id="data">
-              {coins.slice(0, 18).map((coin, index) => (
-                <Row key={coin.id}>
-                  <td style={tD}>{coin.market_data.market_cap_rank}</td>
-                  <td style={tD} className="d-flex flex-row cursor-pointer">
-                    <img className="mx-md-3" src={coin.image.small} alt="" />
-                    <div className="d-flex flex-column hover:underline">
-                      {coin.name}
-                      <span>{coin.symbol}</span>
-                    </div>
-                  </td>
-                  <td style={tD}>{coin.market_data.current_price.inr}</td>
-                  <td style={tD}>{coin.market_data.market_cap.inr}</td>
-                  <td style={tD}>{coin.market_data.price_change_24h}</td>
-                  <td style={tD}>{coin.market_data.circulating_supply}</td>
-                  <td style={tD}>Chart</td>
-                </Row>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <div className="grid justify-center">
-          <button className="btn btn-danger">Delete Portfolio</button>
-        </div>
+          {/* Coins */}
+          {showPortFolio ? (
+            <>
+              <div className="data table-responsive-md px-md-5">
+                <table
+                  id="table-to-xls"
+                  style={{ backgroundColor: "rgba(31, 92, 89, 0.1)" }}
+                  className="table table-borderless table-hover text-white container my-md-5"
+                >
+                  <thead className="table-light">
+                    <tr>
+                      <th className="col">#</th>
+                      <th className="col">Name</th>
+                      <th className="col">Price</th>
+                      <th className="col">Quantity</th>
+                      {/* <th className="col">Market Cap</th> */}
+                      <th className="col">24H</th>
+                      <th className="col">7D</th>
+                      <th className="col">30D</th>
+                      {/* <th className="col">Total value</th> */}
+                      <th className="col">24H High</th>
+                      <th className="col">7D Chart</th>
+                    </tr>
+                  </thead>
+                  <tbody id="data">
+                    {coins.slice(0, 18).map((coin, index) => (
+                      <Row key={coin.id}>
+                        <td style={tD}>{coin.market_data.market_cap_rank}</td>
+                        <td
+                          style={tD}
+                          className="d-flex flex-row cursor-pointer"
+                        >
+                          <img
+                            className="mx-md-3"
+                            src={coin.image.small}
+                            alt=""
+                          />
+                          <div className="d-flex flex-column hover:underline">
+                            {coin.name}
+                            <span>{coin.symbol}</span>
+                          </div>
+                        </td>
+                        <td style={tD}>
+                          ${coin.market_data.current_price.usd}
+                        </td>
+                        {/* {setQuantity(Quantity + .009)} */}
+                        <td style={tD}>{(Quantity += 0.009).toFixed(3)}</td>
+                        <td style={tD}>
+                          {coin.market_data.price_change_percentage_24h.toFixed(
+                            2
+                          )}
+                          %
+                        </td>
+                        <td style={tD}>
+                          {coin.market_data.price_change_percentage_7d.toFixed(
+                            2
+                          )}
+                          %
+                        </td>
+                        <td style={tD}>
+                          {coin.market_data.price_change_percentage_30d.toFixed(
+                            2
+                          )}
+                          %
+                        </td>
+                        <td style={tD}>${coin.market_data.high_24h.usd}</td>
+                        <td style={tD} className="w-[200px]">
+                          <Trend
+                            smooth
+                            autoDraw
+                            autoDrawDuration={3000}
+                            autoDrawEasing="ease-out"
+                            data={
+                              coin.market_data.market_cap_rank % 2 === 0
+                                ? [0, 2, 5, 9, 5, 10, 3, 5, 0, 9, 6, 8, 2, 9, 0]
+                                : [0, 2, 5, 9, 5, 10, 3, 5, 0, 0, 1, 8, 1, 2, 0]
+                            }
+                            gradient={["green", "lime", "yellow"]}
+                            radius={10}
+                            strokeWidth={2}
+                            strokeLinecap={"butt"}
+                          />
+                        </td>
+                      </Row>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="grid justify-center">
+                <button className="btn btn-danger" onClick={openDelete}>
+                  Delete Portfolio
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <div> No Portfolio available</div>
+            </>
+          )}
+          <ConfirmPortDel
+            showDelete={showDelete}
+            setShowDelete={setShowDelete}
+          />
+        </Holdings>
       </Port>
       <Footer />
     </>
@@ -269,5 +374,6 @@ const Row = styled.tr`
 const Port = styled.div``;
 const Quickport = styled.div``;
 const Header = styled.div``;
+const Holdings = styled.div``;
 
 export default Portfolio;
