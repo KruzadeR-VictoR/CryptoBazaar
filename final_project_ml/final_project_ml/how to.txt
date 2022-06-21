@@ -1,0 +1,4 @@
+<in cmd>
+python --version #(3.7 or above)
+pip install streamlit
+streamlit run filename.py    #(in same folder ofc)
