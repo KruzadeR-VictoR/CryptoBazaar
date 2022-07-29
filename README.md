@@ -1,3 +1,7 @@
+You can check the Web app live at https://cryptobazaar.vercel.app/
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
